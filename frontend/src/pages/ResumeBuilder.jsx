@@ -18,6 +18,10 @@ import {
 import TempleteSelector from "../components/TempleteSelector";
 import ColorPicker from "../components/ColorPicker";
 import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
+import Experience from "../components/Experience";
+import EducationForm from "../components/EducationForm";
+import ProjectForm from "../components/ProjectForm";
+import SkillsForm from "../components/SkillsForm";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
@@ -46,7 +50,7 @@ const ResumeBuilder = () => {
   const section = [
     { id: "personal", name: "Personal Info", icon: User },
     { id: "summary", name: "Summary", icon: FileText },
-    { id: "exprience", name: "Experience", icon: Briefcase },
+    { id: "experience", name: "Experience", icon: Briefcase },
     { id: "education", name: "Education", icon: GraduationCap },
     { id: "project", name: "Project", icon: FolderIcon },
     { id: "skills", name: "Skills", icon: Sparkle },
@@ -170,7 +174,42 @@ const ResumeBuilder = () => {
                     setResumeData={setResumeData}
                   />
                 )}
+                {activeSection.id === "experience" && (
+                  <Experience
+                    data={resumeData.experience}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({ ...prev, experience: data }))
+                    }
+                  />
+                )}
+                {activeSection.id === "education" && (
+                  <EducationForm
+                    data={resumeData.education}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({ ...prev, education: data }))
+                    }
+                  />
+                )}
+                {activeSection.id === "project" && (
+                  <ProjectForm
+                    data={resumeData.project}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({ ...prev, project: data }))
+                    }
+                  />
+                )}
+                {activeSection.id === "skills" && (
+                  <SkillsForm
+                    data={resumeData.skills}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({ ...prev, skills: data }))
+                    }
+                  />
+                )}
               </div>
+              <button className="bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm">
+                Save Changes
+              </button>
             </div>
           </div>
           {/* {right panel } */}
