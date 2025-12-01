@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { dummyResumeData } from "../assets/assets";
 import PersonalInfoForm from "../components/PersonalInfoForm";
+import ResumePreview from "../components/ResumePreview";
 import {
   ArrowLeft,
   ArrowLeftIcon,
@@ -14,7 +15,9 @@ import {
   Sparkle,
   User,
 } from "lucide-react";
-
+import TempleteSelector from "../components/TempleteSelector";
+import ColorPicker from "../components/ColorPicker";
+import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
@@ -89,7 +92,23 @@ const ResumeBuilder = () => {
                 className="flex justify-between items-center mb-6 border-b
               border-gray-200 py-1"
               >
-                <div></div>
+                <div className="flex items-center gap-2">
+                  <TempleteSelector
+                    selectedTemplate={resumeData.template}
+                    onChange={(template) =>
+                      setResumeData((prev) => ({ ...prev, template }))
+                    }
+                  />
+                  <ColorPicker
+                    selectedColor={resumeData.accent_color}
+                    onChange={(color) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        accent_color: color,
+                      }))
+                    }
+                  />
+                </div>
                 <div className="flex items-center">
                   {activeSectionIndex != 0 && (
                     <button
@@ -127,16 +146,42 @@ const ResumeBuilder = () => {
               {/* {from content } */}
               <div className="space-y-6">
                 {activeSection.id === "personal" && (
-                  <PersonalInfoForm data={resumeData.personal_info} 
-                  onChange={(data)=>setResumeData(prev => ({...prev , personal_info:data}))}
-                  removeBackground={removeBackground}setRemoveBackground={setRemoveBackground}/>
+                  <PersonalInfoForm
+                    data={resumeData.personal_info}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        personal_info: data,
+                      }))
+                    }
+                    removeBackground={removeBackground}
+                    setRemoveBackground={setRemoveBackground}
+                  />
                 )}
-
+                {activeSection.id === "summary" && (
+                  <ProfessionalSummaryForm
+                    data={resumeData.professional_summary}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        professional_summary: data,
+                      }))
+                    }
+                    setResumeData={setResumeData}
+                  />
+                )}
               </div>
             </div>
           </div>
           {/* {right panel } */}
-          <div></div>
+          <div className="lg:col-span-7 rounded-lg max-lg:mt-6">
+            <div>{/* {button} */}</div>
+            <ResumePreview
+              data={resumeData}
+              templete={resumeData.template}
+              accentColor={resumeData.accent_color}
+            />
+          </div>
         </div>
       </div>
     </div>
