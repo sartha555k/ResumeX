@@ -3,9 +3,9 @@ import ModernTemplete from "./templates/ModernTemplate";
 import MinimalImageTemplete from "./templates/MinimalImageTemplate";
 import MinimalTemplete from "./templates/MinimalTemplate";
 
-const ResumePreview = ({ data, templete, accentColor, classes = "" }) => {
+const ResumePreview = ({ data, template, accentColor, classes = "" }) => {
   const renderTemplete = () => {
-    switch (templete) {
+    switch (template) {
       case "modern":
         return <ModernTemplete data={data} accentColor={accentColor} />;
       case "minimal":
