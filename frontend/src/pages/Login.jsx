@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from 'react-redux'
-import api from "../../configs/api.js"
+import api from "../configs/api"
 import { login } from '../app/features/authSlice'
 import toast from 'react-hot-toast'
 const Login = () => {

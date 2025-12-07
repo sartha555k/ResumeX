@@ -29,7 +29,7 @@ const PersonalInfoForm = ({
       type: "text",
       icon: BriefcaseBusiness,
     },
-    { key: "linkedIn", label: "LinkedIn", type: "url", icon: Globe },
+    { key: "linkedin", label: "LinkedIn", type: "url", icon: Globe },
     { key: "website", label: "Personal Website", type: "url", icon: Globe },
   ];
   return (
